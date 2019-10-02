@@ -1,5 +1,5 @@
 <?php
-class Produk{
+abstract class Produk{
     private $judul ,
            $penulis ,
            $penerbit,
@@ -43,7 +43,10 @@ class Produk{
         return "$this->penulis, $this->penerbit ";
     }
 
-    public function getInfoProduk(){
+    abstract public function getInfoProduk();
+    
+    
+    public function getInfo(){
 
         $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
         return $str;
@@ -61,7 +64,7 @@ class Komik extends Produk{
 
 
     public function getInfoProduk() { 
-        $str = "Komik : " . parent::getInfoProduk() . " - {$this->jmlHalaman} Halaman.";
+        $str = "Komik : " . $this->getInfo() . " - {$this->jmlHalaman} Halaman.";
         return $str;
     
     
@@ -78,7 +81,7 @@ class Game extends Produk{
     }
  
     public function getInfoProduk() {
-        $str = "Game : " . parent::getInfoProduk() ." - {$this->waktuMain} Jam.";
+        $str = "Game : " . $this->getInfo() ." - {$this->waktuMain} Jam.";
         return $str;
     }
     
@@ -102,5 +105,8 @@ class CetakInfoProduk{
 $produk1 = new Komik("Naruto", "Masahi Kishimoto", "Shoen jump", 45000, 100, 0);
 $produk2 = new Game("Uncharted", "Neil druckmann", "Sony Computer", 25000,50);
 
-
+$cetakProduk = new CetakInfoProduk();
+$cetakProduk->tambahProduk($produk1);
+$cetakProduk->tambahProduk($produk2);
+echo $cetakProduk->cetak();
 ?>
