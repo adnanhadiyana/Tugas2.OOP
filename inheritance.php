@@ -9,17 +9,15 @@ class Produk{
            $penerbit,
            $harga,
            $jmlHalaman,
-           $waktuMain,
-           $tipe;
+           $waktuMain;
 
-    public function __construct( $judul="judul", $penulis="penulis", $penerbit="penerbit", $harga=0, $jmlHalaman=0, $waktuMain=0, $tipe ){
+    public function __construct( $judul="judul", $penulis="penulis", $penerbit="penerbit", $harga=0, $jmlHalaman=0, $waktuMain=0 ){
         $this->judul = $judul;
         $this->penulis =$penulis;
         $this->penerbit=$penerbit;
         $this->harga = $harga;
         $this->jmlHalaman=$jmlHalaman;
         $this->waktuMain=$waktuMain;
-        $this->tipe = $tipe;
     }
 
     public function getLabel(){
@@ -28,7 +26,7 @@ class Produk{
 
     public function getInfoProduk(){
 
-        $str = "{$this->tipe} : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
+        $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
         return $str;
     }
 }
